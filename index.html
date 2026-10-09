@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Originals Global | Professional Digital & Academic Studio</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* Deep Navy & Electric Indigo Executive Dark Theme (Whole Background Dark) */
+    :root, .dark {
+      --bg-primary: #0a0f1d;
+      --bg-card: #141c2e;
+      --bg-card-hover: #1c273e;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #232f48;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --badge-bg: rgba(99, 102, 241, 0.15);
+      --badge-border: rgba(99, 102, 241, 0.3);
+      --badge-text: #818cf8;
+    }
+    /* Light Theme Variant */
+    .light {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --badge-bg: rgba(16, 185, 129, 0.1);
+      --badge-border: rgba(16, 185, 129, 0.2);
+      --badge-text: #059669;
+    }
+    html, body {
+      background-color: var(--bg-primary) !important;
+      color: var(--text-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen font-sans flex flex-col justify-between">
+
+  <div>
+    <!-- HEADER NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[var(--bg-primary)]/90 border-b border-[var(--border-color)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Brand Logo: Originals Global -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-violet-500/20">
+            O
+          </div>
+          <div>
+            <span class="font-black text-lg text-[var(--text-main)] tracking-tight">Originals</span>
+            <span class="text-[10px] bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] px-2 py-0.5 rounded-full ml-1 font-bold">Global</span>
+          </div>
+        </div>
+
+        <!-- 4 Page Navigation Links: Home -> Our Team -> Services -> Contact Us -->
+        <nav class="hidden md:flex items-center space-x-8 text-xs font-bold text-[var(--text-muted)]">
+          <button onclick="navigateTo('home')" id="nav-home" class="nav-btn text-[var(--accent)] font-black py-1">Home</button>
+          <button onclick="navigateTo('team')" id="nav-team" class="nav-btn hover:text-[var(--text-main)] py-1">Our Team</button>
+          <button onclick="navigateTo('services')" id="nav-services" class="nav-btn hover:text-[var(--text-main)] py-1">Services</button>
+          <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn hover:text-[var(--text-main)] py-1">Contact Us</button>
+        </nav>
+
+        <!-- Theme Toggle -->
+        <div class="flex items-center space-x-3">
+          <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] text-xs text-[var(--text-muted)] hover:text-[var(--text-main)] hover:border-violet-500/50 transition-all shadow-sm">
+            <span id="theme-icon">🌙</span>
+          </button>
+          
+          <!-- Mobile Menu Trigger -->
+          <button onclick="toggleMobileNav()" class="md:hidden p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] text-[var(--text-muted)]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-drawer" class="hidden md:hidden border-b border-[var(--border-color)] bg-[var(--bg-card)] px-4 pt-3 pb-5 space-y-2 text-xs font-bold">
+        <button onclick="navigateTo('home'); toggleMobileNav()" class="block w-full text-left py-2 text-[var(--text-muted)] hover:text-[var(--accent)]">Home</button>
+        <button onclick="navigateTo('team'); toggleMobileNav()" class="block w-full text-left py-2 text-[var(--text-muted)] hover:text-[var(--accent)]">Our Team</button>
+        <button onclick="navigateTo('services'); toggleMobileNav()" class="block w-full text-left py-2 text-[var(--text-muted)] hover:text-[var(--accent)]">Services</button>
+        <button onclick="navigateTo('contact'); toggleMobileNav()" class="block w-full text-left py-2 text-[var(--accent)] font-extrabold">Contact Us</button>
+      </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+      <!-- ================= PAGE 1: HOME ================= -->
+      <section id="page-home" class="page-section active space-y-12">
+        
+        <!-- Hero Header -->
+        <div class="text-center pt-8 pb-4 space-y-6">
+          <div class="inline-flex items-center space-x-2 bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] px-4 py-1.5 rounded-full text-xs font-bold">
+            <span>✨ Welcome to Originals Global • Official Digital Studio</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-[var(--text-main)] tracking-tight max-w-5xl mx-auto leading-tight">
+            Premium Engineering, Design & <span class="bg-gradient-to-r from-purple-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">100% Original Academic Solutions.</span>
+          </h1>
+
+          <p class="mt-4 text-sm sm:text-base text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">
+            Direct collaboration with our core 3-member specialist team serving businesses, startups, and university students across the US, UK, Europe, Australia & Gulf.
+          </p>
+        </div>
+
+        <!-- ABOUT OUR WORK CARD -->
+        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl max-w-4xl mx-auto backdrop-blur-sm">
+          <div class="border-b border-[var(--border-color)] pb-4 text-center sm:text-left">
+            <h2 class="text-xs font-extrabold uppercase tracking-wider text-[var(--badge-text)]">About Our Work</h2>
+            <h3 class="text-2xl sm:text-3xl font-bold text-[var(--text-main)] mt-1">What We Build & Deliver</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <span class="p-2.5 rounded-2xl bg-violet-500/10 text-violet-400 font-bold border border-violet-500/20">💻</span>
+                <div>
+                  <h4 class="font-bold text-base text-[var(--text-main)] mb-1">Software & Web Engineering</h4>
+                  <p>We build production-ready Next.js websites, cross-platform iOS & Android mobile apps, and SaaS platforms built for high conversion and speed.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <span class="p-2.5 rounded-2xl bg-pink-500/10 text-pink-400 font-bold border border-pink-500/20">🎨</span>
+                <div>
+                  <h4 class="font-bold text-base text-[var(--text-main)] mb-1">UI/UX & Brand Design</h4>
+                  <p>Interactive Figma wireframe prototypes, modern UI design kits, logos, and investor-ready presentation pitch decks.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <span class="p-2.5 rounded-2xl bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20">🛡️</span>
+                <div>
+                  <h4 class="font-bold text-base text-[var(--text-main)] mb-1">Plagiarism-Free Academic Work</h4>
+                  <p>100% original programming code, research papers, data science models, and Final Year Projects (FYP) delivered with Turnitin verification.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <span class="p-2.5 rounded-2xl bg-cyan-500/10 text-cyan-400 font-bold border border-cyan-500/20">⚡</span>
+                <div>
+                  <h4 class="font-bold text-base text-[var(--text-main)] mb-1">Maintenance & Optimization</h4>
+                  <p>Sub-second Google PageSpeed optimizations, 24–48 hour urgent bug fixes, and monthly website maintenance retainers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page Pagination Footer Controls -->
+        <div class="pt-8 border-t border-[var(--border-color)] flex justify-end">
+          <button onclick="navigateTo('team')" class="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2 shadow-lg shadow-violet-500/25 transition-all transform active:scale-95">
+            <span>Next: Our Team</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ================= PAGE 2: OUR TEAM ================= -->
+      <section id="page-team" class="page-section space-y-10">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <h2 class="text-xs font-extrabold uppercase tracking-wider text-[var(--badge-text)]">Our Core Team</h2>
+          <h3 class="text-2xl sm:text-4xl font-bold text-[var(--text-main)]">Meet Originals Global Specialists</h3>
+          <p class="text-xs text-[var(--text-muted)]">Inspect GitHub repositories, view LinkedIn profiles, or contact us directly</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Member 1: Shazeen Amjad -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-6 flex flex-col justify-between space-y-6 hover:border-violet-500/60 transition-all shadow-lg">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4 border-b border-[var(--border-color)] pb-4">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-black text-2xl shadow-md">
+                  SA
+                </div>
+                <div>
+                  <h4 class="text-xl font-black text-[var(--text-main)]">Shazeen Amjad</h4>
+                  <span class="text-xs font-bold text-[var(--text-muted)]">Team Member</span>
+                </div>
+              </div>
+
+              <div class="space-y-3 pt-2 text-xs">
+                <a href="mailto:shazeenamjad45@gmail.com" class="flex items-center space-x-3 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <span class="text-sm">✉️</span>
+                  <span class="font-semibold truncate">shazeenamjad45@gmail.com</span>
+                </a>
+                <a href="tel:03207486292" class="flex items-center space-x-3 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <span class="text-sm">📞</span>
+                  <span class="font-semibold">+92 320 7486292</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 border-t border-[var(--border-color)] pt-4">
+              <a href="https://github.com/shazeenamjad45-beep" target="_blank" class="flex items-center justify-center space-x-2 bg-[var(--bg-primary)] border border-[var(--border-color)] hover:border-violet-500 text-[var(--text-main)] text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+                <span>💻 GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/shazeen-amjad-b3b9143ab" target="_blank" class="flex items-center justify-center space-x-2 bg-violet-600/10 border border-violet-500/30 text-violet-400 hover:bg-violet-600 hover:text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+                <span>🔗 LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Member 2: Laiba Khalid -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-6 flex flex-col justify-between space-y-6 hover:border-violet-500/60 transition-all shadow-lg">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4 border-b border-[var(--border-color)] pb-4">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white font-black text-2xl shadow-md">
+                  LK
+                </div>
+                <div>
+                  <h4 class="text-xl font-black text-[var(--text-main)]">Laiba Khalid</h4>
+                  <span class="text-xs font-bold text-[var(--text-muted)]">Team Member</span>
+                </div>
+              </div>
+
+              <div class="space-y-3 pt-2 text-xs">
+                <a href="mailto:laibakhalid352@gmail.com" class="flex items-center space-x-3 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <span class="text-sm">✉️</span>
+                  <span class="font-semibold truncate">laibakhalid352@gmail.com</span>
+                </a>
+                <a href="tel:03186832775" class="flex items-center space-x-3 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <span class="text-sm">📞</span>
+                  <span class="font-semibold">+92 318 6832775</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 border-t border-[var(--border-color)] pt-4">
+              <a href="http://github.com/laibakhakid" target="_blank" class="flex items-center justify-center space-x-2 bg-[var(--bg-primary)] border border-[var(--border-color)] hover:border-violet-500 text-[var(--text-main)] text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+                <span>💻 GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/khalidlaiba" target="_blank" class="flex items-center justify-center space-x-2 bg-violet-600/10 border border-violet-500/30 text-violet-400 hover:bg-violet-600 hover:text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+                <span>🔗 LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Member 3: Kinza Khalid -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-6 flex flex-col justify-between space-y-6 hover:border-violet-500/60 transition-all shadow-lg">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4 border-b border-[var(--border-color)] pb-4">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-500 flex items-center justify-center text-white font-black text-2xl shadow-md">
+                  KK
+                </div>
+                <div>
+                  <h4 class="text-xl font-black text-[var(--text-main)]">Kinza Khalid</h4>
+                  <span class="text-xs font-bold text-[var(--text-muted)]">Team Member</span>
+                </div>
+              </div>
+
+              <div class="space-y-3 pt-2 text-xs">
+                <a href="mailto:kinzakhalid986@gmail.com" class="flex items-center space-x-3 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <span class="text-sm">✉️</span>
+                  <span class="font-semibold truncate">kinzakhalid986@gmail.com</span>
+                </a>
+                <a href="tel:03107045062" class="flex items-center space-x-3 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
+                  <span class="text-sm">📞</span>
+                  <span class="font-semibold">+92 310 7045062</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 border-t border-[var(--border-color)] pt-4">
+              <a href="https://github.com/Kinzakhalid593" target="_blank" class="flex items-center justify-center space-x-2 bg-[var(--bg-primary)] border border-[var(--border-color)] hover:border-violet-500 text-[var(--text-main)] text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+                <span>💻 GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/khalidkinza" target="_blank" class="flex items-center justify-center space-x-2 bg-violet-600/10 border border-violet-500/30 text-violet-400 hover:bg-violet-600 hover:text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all">
+                <span>🔗 LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Page Pagination Controls -->
+        <div class="pt-8 border-t border-[var(--border-color)] flex justify-between items-center">
+          <button onclick="navigateTo('home')" class="bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-main)] text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2">
+            <span>← Back: Home</span>
+          </button>
+          <button onclick="navigateTo('services')" class="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2 shadow-lg shadow-violet-500/25 transition-all transform active:scale-95">
+            <span>Next: Services</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ================= PAGE 3: SERVICES ================= -->
+      <section id="page-services" class="page-section space-y-10">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <h2 class="text-xs font-extrabold uppercase tracking-wider text-[var(--badge-text)]">Official Service Menu</h2>
+          <h3 class="text-2xl sm:text-4xl font-bold text-[var(--text-main)]">Our 8 Core Specializations</h3>
+          <p class="text-xs text-[var(--text-muted)]">Select a service to get started with Originals Global</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Service 1: Web Dev -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-violet-500/10 text-violet-400 flex items-center justify-center text-2xl font-bold">🌐</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Web Dev & SaaS Portals</h4>
+              <p class="text-xs text-[var(--text-muted)]">Custom React/Next.js websites, SaaS platforms, E-commerce storefronts, and landing pages.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-violet-400 hover:underline pt-2 text-left">Order Web Project →</button>
+          </div>
+
+          <!-- Service 2: Mobile App Dev -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl font-bold">📱</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Mobile App Development</h4>
+              <p class="text-xs text-[var(--text-muted)]">Cross-platform iOS & Android mobile applications engineered with React Native & Flutter.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-violet-400 hover:underline pt-2 text-left">Order Mobile App →</button>
+          </div>
+
+          <!-- Service 3: UI/UX Design -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-2xl font-bold">🎨</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">UI/UX & Brand Identity</h4>
+              <p class="text-xs text-[var(--text-muted)]">Figma wireframes, interactive mobile/web prototypes, brand logos, and pitch decks.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-violet-400 hover:underline pt-2 text-left">Order UI Design →</button>
+          </div>
+
+          <!-- Service 4: Plagiarism-Free Assignments -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-emerald-500/50 transition-all flex flex-col justify-between shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[9px] font-black px-3 py-1 rounded-bl-xl uppercase">0% PLAGIARISM</div>
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl font-bold">📝</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Academic & Code Papers</h4>
+              <p class="text-xs text-[var(--text-muted)]">100% original, plagiarism-free programming assignments, research papers & Turnitin certificates.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-emerald-400 hover:underline pt-2 text-left">Get Academic Help →</button>
+          </div>
+
+          <!-- Service 5: FYP Projects -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-bold">🎓</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Final Year Projects (FYP)</h4>
+              <p class="text-xs text-[var(--text-muted)]">Complete FYP capstone software development, system architecture & viva interview support.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-amber-400 hover:underline pt-2 text-left">Order FYP Capstone →</button>
+          </div>
+
+          <!-- Service 6: Data Science -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold">📊</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Data Science & Python</h4>
+              <p class="text-xs text-[var(--text-muted)]">Python automation scripts, Jupyter Notebook data analysis, Machine Learning models & web scraping.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-cyan-400 hover:underline pt-2 text-left">Order Data Project →</button>
+          </div>
+
+          <!-- Service 7: Speed & Maintenance -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-2xl font-bold">⚡</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Speed Boost & Retainer</h4>
+              <p class="text-xs text-[var(--text-muted)]">Sub-second Google PageSpeed optimization, monthly site maintenance, backups & security updates.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-rose-400 hover:underline pt-2 text-left">Get Maintenance →</button>
+          </div>
+
+          <!-- Service 8: Bug Fixing -->
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-3xl space-y-4 hover:border-violet-500/50 transition-all flex flex-col justify-between shadow-sm">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl font-bold">🛠️</div>
+              <h4 class="font-bold text-lg text-[var(--text-main)]">Bug Fixes & API Setup</h4>
+              <p class="text-xs text-[var(--text-muted)]">Urgent 24–48 hour bug resolution, code refactoring, Stripe/PayPal payment setup & APIs.</p>
+            </div>
+            <button onclick="navigateTo('contact')" class="text-xs font-bold text-indigo-400 hover:underline pt-2 text-left">Get Bug Fix Quote →</button>
+          </div>
+
+        </div>
+
+        <!-- Page Pagination Controls -->
+        <div class="pt-8 border-t border-[var(--border-color)] flex justify-between items-center">
+          <button onclick="navigateTo('team')" class="bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-main)] text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2">
+            <span>← Back: Our Team</span>
+          </button>
+          <button onclick="navigateTo('contact')" class="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2 shadow-lg shadow-violet-500/25 transition-all transform active:scale-95">
+            <span>Next: Contact Us</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ================= PAGE 4: CONTACT US ================= -->
+      <section id="page-contact" class="page-section space-y-8">
+        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-6 sm:p-10 max-w-4xl mx-auto space-y-8 shadow-xl">
+          <div class="text-center space-y-2 border-b border-[var(--border-color)] pb-6">
+            <h3 class="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Contact Originals Global Team</h3>
+            <p class="text-xs sm:text-sm text-[var(--text-muted)]">Reach out to Shazeen, Laiba & Kinza directly or send your project brief</p>
+          </div>
+
+          <!-- Quick Contact Cards Bar -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-4 rounded-2xl space-y-1">
+              <p class="font-extrabold text-[var(--text-main)]">Shazeen Amjad</p>
+              <p class="text-[var(--text-muted)]">📞 +92 320 7486292</p>
+              <p class="text-violet-400 truncate font-semibold">shazeenamjad45@gmail.com</p>
+            </div>
+            <div class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-4 rounded-2xl space-y-1">
+              <p class="font-extrabold text-[var(--text-main)]">Laiba Khalid</p>
+              <p class="text-[var(--text-muted)]">📞 +92 318 6832775</p>
+              <p class="text-purple-400 truncate font-semibold">laibakhalid352@gmail.com</p>
+            </div>
+            <div class="bg-[var(--bg-primary)] border border-[var(--border-color)] p-4 rounded-2xl space-y-1">
+              <p class="font-extrabold text-[var(--text-main)]">Kinza Khalid</p>
+              <p class="text-[var(--text-muted)]">📞 +92 310 7045062</p>
+              <p class="text-pink-400 truncate font-semibold">kinzakhalid986@gmail.com</p>
+            </div>
+          </div>
+
+          <!-- Direct Form -->
+          <form onsubmit="handleFormSubmit(event)" class="space-y-4 pt-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-bold text-[var(--text-main)] block mb-1">Your Full Name</label>
+                <input type="text" required placeholder="Enter your full name..." class="w-full text-xs p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-main)] focus:outline-none focus:ring-2 focus:ring-violet-500">
+              </div>
+              <div>
+                <label class="text-xs font-bold text-[var(--text-main)] block mb-1">Your Email or Phone Number</label>
+                <input type="text" required placeholder="Enter email address or phone number..." class="w-full text-xs p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-main)] focus:outline-none focus:ring-2 focus:ring-violet-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-bold text-[var(--text-main)] block mb-1">Select Required Service</label>
+                <select class="w-full text-xs p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-main)] font-bold">
+                  <option>🌐 Web Development & SaaS Portals</option>
+                  <option>📱 Mobile App Development (iOS & Android)</option>
+                  <option>🎨 UI/UX & Brand Identity</option>
+                  <option>📝 Plagiarism-Free Academic & Code Assignments</option>
+                  <option>🎓 Final Year Projects (FYP) & Capstone</option>
+                  <option>📊 Data Science & Python Automation</option>
+                  <option>⚡ Speed Optimization & Monthly Maintenance</option>
+                  <option>🛠️ Urgent Bug Fixes & Custom API Setup</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-bold text-[var(--text-main)] block mb-1">Contact Preferred Member</label>
+                <select class="w-full text-xs p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-main)]">
+                  <option>Any Available Team Member</option>
+                  <option>Shazeen Amjad</option>
+                  <option>Laiba Khalid</option>
+                  <option>Kinza Khalid</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-[var(--text-main)] block mb-1">Project Details / Assignment Brief</label>
+              <textarea rows="4" required placeholder="Describe your project requirements or paste your assignment prompt..." class="w-full text-xs p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-main)] focus:outline-none focus:ring-2 focus:ring-violet-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-black py-4 rounded-xl shadow-lg shadow-violet-500/25 transition-all transform active:scale-95">
+              📩 Submit Inquiry to Originals Global
+            </button>
+          </form>
+        </div>
+
+        <!-- Page Pagination Controls -->
+        <div class="pt-8 border-t border-[var(--border-color)] flex justify-between items-center">
+          <button onclick="navigateTo('services')" class="bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-main)] text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2">
+            <span>← Back: Services</span>
+          </button>
+          <button onclick="navigateTo('home')" class="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-bold px-6 py-3 rounded-xl flex items-center space-x-2 shadow-lg shadow-violet-500/25 transition-all transform active:scale-95">
+            <span>Return to Home 🏠</span>
+          </button>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[var(--border-color)] bg-[var(--bg-card)] py-6 text-center text-xs text-[var(--text-muted)]">
+    <p>© 2026 <span class="font-bold text-[var(--text-main)]">Originals Global</span>. All Rights Reserved. Built by Shazeen Amjad, Laiba Khalid & Kinza Khalid.</p>
+  </footer>
+
+  <!-- JAVASCRIPT PAGE ROUTER & THEME CONTROLLER -->
+  <script>
+    function navigateTo(pageId) {
+      const sections = document.querySelectorAll('.page-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      const target = document.getElementById('page-' + pageId);
+      if (target) {
+        target.classList.add('active');
+      }
+
+      const navBtns = document.querySelectorAll('.nav-btn');
+      navBtns.forEach(btn => {
+        btn.classList.remove('text-[var(--accent)]', 'font-black');
+        btn.classList.add('hover:text-[var(--text-main)]');
+      });
+
+      const activeBtn = document.getElementById('nav-' + pageId);
+      if (activeBtn) {
+        activeBtn.classList.add('text-[var(--accent)]', 'font-black');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      if (html.classList.contains('light')) {
+        html.classList.remove('light');
+        icon.innerText = '🌙';
+      } else {
+        html.classList.add('light');
+        icon.innerText = '☀️';
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('🎉 Thank you for contacting Originals Global! We have received your inquiry and will respond within 30 minutes.');
+    }
+  </script>
+</body>
+</html>
